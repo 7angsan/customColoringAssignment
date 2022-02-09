@@ -13,7 +13,7 @@ public class BoardView extends SurfaceView {
     public CustomElement customEle;
     public CustomElement customEleTwo;
     // make an ArrayList of CustomElement objects so they can be draw at once
-    ArrayList<CustomElement> elements;
+    ArrayList<CustomElement> elements = new ArrayList<CustomElement>();
 
 
     public BoardView(Context context, AttributeSet attrs) {
@@ -21,16 +21,16 @@ public class BoardView extends SurfaceView {
         setWillNotDraw(false);
         // draws a pink rectangle
         customEle = new CustomRect("rectOne", 0xFFFFC0CB, 250,250, 800, 800);
-        customEle = new CustomCircle("circleOne", 0xFF00FF00, 500, 800, 100);
+        customEleTwo = new CustomCircle("circleOne", 0xFF00FF00, 500, 800, 100);
         elements.add(customEle);
         elements.add(customEleTwo);
     }
 
     @Override
     public void onDraw(Canvas c) {
-        for(CustomElement ce: elements) {
-            ce.drawMe(c);
-        }
+      for(CustomElement ce: elements) {
+          ce.drawMe(c);
+      }
     }
 
     public BoardModel getBoardModel() { return boardModel; }
