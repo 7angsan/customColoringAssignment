@@ -17,7 +17,9 @@ import android.graphics.Paint;
  * 
  */
 public abstract class CustomElement {
-
+	public int redValue;
+	public int greenValue;
+	public int blueValue;
 	/**
 	 * this is the "fudge factor" for determining whether a tap falls within a
 	 * given shape. The value is specified in display pixels (dp)
@@ -81,6 +83,7 @@ public abstract class CustomElement {
 
 	public void setRed(int value) {
 		int old = this.myPaint.getColor();
+		storeRed(value);
 		this.myPaint.setColor(Color.rgb(
 				value,
 				Color.green(old),
@@ -90,6 +93,7 @@ public abstract class CustomElement {
 
 	public void setGreen(int value) {
 		int old = this.myPaint.getColor();
+		storeGreen(value);
 		this.myPaint.setColor(Color.rgb(
 				Color.red(old),
 				value,
@@ -99,12 +103,27 @@ public abstract class CustomElement {
 
 	public void setBlue(int value) {
 		int old = this.myPaint.getColor();
+		storeGreen(value);
 		this.myPaint.setColor(Color.rgb(
 				Color.red(old),
 				Color.green(old),
 				value
 		));
 	}
+
+	public void storeRed(int value) {
+		redValue = value;
+	}
+
+	public void storeGreen(int value) {
+		greenValue = value;
+	}
+
+	public void storeBlue(int value) {
+		blueValue = value;
+	}
+
+
 
 	/** get the color */
 	public int getColor() {

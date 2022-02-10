@@ -12,6 +12,9 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     BoardView boardView;
+    int redProgressValue;
+    int greenProgressValue;
+    int blueProgressValue;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -22,10 +25,13 @@ public class MainActivity extends AppCompatActivity {
         SeekBar changeRed = findViewById(R.id.redBar);
         TextView redNum = findViewById(R.id.redValue);
         changeRed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            MainActivity mainActivity;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
                 // crashes if I don't add a string
+                boardView.getArrayList().get(boardView.getCurrentElement()).setRed(progressValue);
                 redNum.setText(progressValue + "");
+                boardView.invalidate();
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -37,10 +43,11 @@ public class MainActivity extends AppCompatActivity {
         SeekBar changeGreen = findViewById(R.id.greenBar);
         TextView greenNum = findViewById(R.id.greenValue);
         changeGreen.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            MainActivity mainActivity;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
                 // Get the element at currentElement and use CustomElement.setGreen(progressValue)
-
+                boardView.getArrayList().get(boardView.getCurrentElement()).setGreen(progressValue);
                 greenNum.setText(progressValue + "");
                 boardView.invalidate();
             }
@@ -54,9 +61,12 @@ public class MainActivity extends AppCompatActivity {
         SeekBar changeBlue = findViewById(R.id.blueBar);
         TextView blueNum = findViewById(R.id.blueValue);
         changeBlue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            MainActivity mainActivity;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
+                boardView.getArrayList().get(boardView.getCurrentElement()).setGreen(progressValue);
                 blueNum.setText(progressValue + "");
+                boardView.invalidate();
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -65,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+        TextView element = findViewById(R.id.element);
 
         // anonymous class with listener
         boardView.setOnTouchListener(
@@ -81,12 +92,15 @@ public class MainActivity extends AppCompatActivity {
                         for (CustomElement ce: boardView.getArrayList()) {
                             if (ce.containsPoint(x,y)) {
                                 boardView.setCurrentElement(count);
+                                element.setText(ce.getName());
+                                changeRed.setProgress(ce.redValue);
+                                changeGreen.setProgress(ce.greenValue);
+                                changeBlue.setProgress(ce.blueValue);
                             }
                             count++;
                         }
-
+                        boardView.invalidate();
                         // Once you find it, set that index to currentElement in BoardView
-
                         return false;
                     }
                 } );

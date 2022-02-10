@@ -47,7 +47,7 @@ public class CustomRect extends CustomElement {
 		Rect r = new Rect(left, top, right, bottom);
 		
 		return r.contains(x, y);
-	}//contaisPoint
+	}//containsPoint
 
 
 	@Override

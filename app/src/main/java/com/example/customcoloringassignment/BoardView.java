@@ -18,13 +18,14 @@ public class BoardView extends SurfaceView {
     public BoardView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setWillNotDraw(false);
-        elements.add(new CustomRect("napkin", 0xFFFFFFFF, 250,300, 450, 600));
-        elements.add(new CustomCircle("crust", 0xFFF7E4C4, 1000, 450, 400));
-        elements.add(new CustomCircle("sauce", 0xFFCC5500, 1000, 450, 350));
-        elements.add(new CustomCircle("pepperoni", 0xFFAA4400, 1200, 500, 80));
-        elements.add(new CustomRect("pineapple", 0xFFFFD964, 800, 600, 900,700));
-        elements.add(new CustomCircle("olive", 0xFF31352E, 1000, 300, 50));
-        elements.add(new CustomRect("greenPepper", 0xFF007D60, 800, 450, 1000, 500));
+        elements.add(new CustomRect("Napkin", 0xFFFFFFFF, 250,300, 450, 600));
+        elements.add(new CustomCircle("Crust", 0xFFF7E4C4, 1000, 450, 400));
+        elements.add(new CustomCircle("Sauce", 0xFFB21807, 1000, 450, 350));
+        elements.add(new CustomCircle("Cheese", 0xFFFFD867, 1000, 450, 320));
+        elements.add(new CustomCircle("Pepperoni", 0xFFAA4400, 1200, 500, 80));
+        elements.add(new CustomRect("Pineapple", 0xFFFFD964, 800, 580, 900,680));
+        elements.add(new CustomCircle("Olive", 0xFF31352E, 1000, 300, 50));
+        elements.add(new CustomRect("Green Pepper", 0xFF007D60, 800, 450, 1000, 500));
         currentElement = 0;
     }
 
@@ -32,8 +33,9 @@ public class BoardView extends SurfaceView {
     public void onDraw(Canvas c) {
       for(CustomElement ce: elements) {
           ce.drawMe(c);
-          //ce.drawHighlight(c);
       }
+        // highlight the pineapple ~~ difficult to see
+        elements.get(5).drawHighlight(c);
     }
 
     public static ArrayList<CustomElement> getArrayList() {
@@ -42,5 +44,9 @@ public class BoardView extends SurfaceView {
 
     public static void setCurrentElement(int index) {
         currentElement = index;
+    }
+
+    public static int getCurrentElement() {
+        return currentElement;
     }
 }
