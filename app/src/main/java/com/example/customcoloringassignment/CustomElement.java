@@ -78,6 +78,34 @@ public abstract class CustomElement {
 		this.myPaint.setColor(color);
 	}
 
+
+	public void setRed(int value) {
+		int old = this.myPaint.getColor();
+		this.myPaint.setColor(Color.rgb(
+				value,
+				Color.green(old),
+				Color.blue(old)
+		));
+	}
+
+	public void setGreen(int value) {
+		int old = this.myPaint.getColor();
+		this.myPaint.setColor(Color.rgb(
+				Color.red(old),
+				value,
+				Color.blue(old)
+		));
+	}
+
+	public void setBlue(int value) {
+		int old = this.myPaint.getColor();
+		this.myPaint.setColor(Color.rgb(
+				Color.red(old),
+				Color.green(old),
+				value
+		));
+	}
+
 	/** get the color */
 	public int getColor() {
 		return this.myPaint.getColor();
@@ -104,7 +132,7 @@ public abstract class CustomElement {
 	 * within the bounds of its shape. This is used for tap purposes so a tap
 	 * that is close to being inside should still count. Use the TAP_MARGIN
 	 * constant as a guide for fudge factor. When implementing this method, you
-	 * may find the {@link android.graphics.Rect.contains} method handy.
+	 * may find the android.graphics.Rect.contains method handy.
 	 */
 	public abstract boolean containsPoint(int x, int y);
 

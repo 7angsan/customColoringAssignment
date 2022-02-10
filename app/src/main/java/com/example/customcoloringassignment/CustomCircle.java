@@ -48,7 +48,7 @@ public class CustomCircle extends CustomElement {
         int dist = (int)Math.sqrt(xDist*xDist + yDist*yDist);  //Thanks, Pythagoras :)
 		
 		return (dist < this.radius + TAP_MARGIN);
-	}//contaisPoint
+	}//containsPoint
 
 
 	/** I knew that middle school geometry class would pay off someday */ 

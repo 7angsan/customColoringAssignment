@@ -35,7 +35,8 @@
             android:id="@+id/boardView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="#BA8C63" />
 
     </LinearLayout>
 
@@ -128,7 +129,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="0"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:translationY="-10dp" />
 
             <TextView
                 android:id="@+id/greenValue"
@@ -144,7 +146,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="0"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:translationY="10dp" />
 
         </LinearLayout>
 

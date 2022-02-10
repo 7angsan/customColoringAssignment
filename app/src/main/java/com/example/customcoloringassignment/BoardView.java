@@ -9,29 +9,38 @@ import java.util.ArrayList;
 
 public class BoardView extends SurfaceView {
 
-    private BoardModel boardModel;
-    public CustomElement customEle;
-    public CustomElement customEleTwo;
     // make an ArrayList of CustomElement objects so they can be draw at once
-    ArrayList<CustomElement> elements = new ArrayList<CustomElement>();
+    private static ArrayList<CustomElement> elements = new ArrayList<CustomElement>();
+
+    private static int currentElement;
 
 
     public BoardView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setWillNotDraw(false);
-        // draws a pink rectangle
-        customEle = new CustomRect("rectOne", 0xFFFFC0CB, 250,250, 800, 800);
-        customEleTwo = new CustomCircle("circleOne", 0xFF00FF00, 500, 800, 100);
-        elements.add(customEle);
-        elements.add(customEleTwo);
+        elements.add(new CustomRect("napkin", 0xFFFFFFFF, 250,300, 450, 600));
+        elements.add(new CustomCircle("crust", 0xFFF7E4C4, 1000, 450, 400));
+        elements.add(new CustomCircle("sauce", 0xFFCC5500, 1000, 450, 350));
+        elements.add(new CustomCircle("pepperoni", 0xFFAA4400, 1200, 500, 80));
+        elements.add(new CustomRect("pineapple", 0xFFFFD964, 800, 600, 900,700));
+        elements.add(new CustomCircle("olive", 0xFF31352E, 1000, 300, 50));
+        elements.add(new CustomRect("greenPepper", 0xFF007D60, 800, 450, 1000, 500));
+        currentElement = 0;
     }
 
     @Override
     public void onDraw(Canvas c) {
       for(CustomElement ce: elements) {
           ce.drawMe(c);
+          //ce.drawHighlight(c);
       }
     }
 
-    public BoardModel getBoardModel() { return boardModel; }
+    public static ArrayList<CustomElement> getArrayList() {
+        return elements;
+    }
+
+    public static void setCurrentElement(int index) {
+        currentElement = index;
+    }
 }
