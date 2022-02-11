@@ -17,9 +17,11 @@ import android.graphics.Paint;
  * 
  */
 public abstract class CustomElement {
+
 	public int redValue;
 	public int greenValue;
 	public int blueValue;
+
 	/**
 	 * this is the "fudge factor" for determining whether a tap falls within a
 	 * given shape. The value is specified in display pixels (dp)
@@ -61,10 +63,10 @@ public abstract class CustomElement {
 		this.highlightPaint.setStrokeWidth(5); // nice wide, visible line
 		this.highlightPaint.setShadowLayer(5, 1, 1, Color.MAGENTA);
 
+		// set the color values to the current color
 		this.redValue = Color.red(color);
 		this.greenValue = Color.green(color);
 		this.blueValue = Color.blue(color);
-
 	}
 
 	/** get the element's given name */
@@ -84,6 +86,14 @@ public abstract class CustomElement {
 		this.myPaint.setColor(color);
 	}
 
+	/**
+	 External Citation
+	 Date: 9 February 2022
+	 Problem: I didn't know how to set color in RGB values instead of Hex.
+	 Resource: Classmate: Vincent Robinson
+	 Solution: Made setColor functions that set the current color element to the
+	 new value and the remaining to the old one.
+	 */
 
 	public void setRed(int value) {
 		int old = this.myPaint.getColor();
@@ -93,14 +103,6 @@ public abstract class CustomElement {
 				Color.green(old),
 				Color.blue(old)
 		));
-
-		int oldR = Color.red(old);
-		int oldG = Color.green(old);
-		int oldB = Color.blue(old);
-		int newR = Color.red(myPaint.getColor());
-		int newG = Color.green(myPaint.getColor());
-		int newB = Color.blue(myPaint.getColor());
-		int x = 5;
 	}
 
 	public void setGreen(int value) {
@@ -134,7 +136,6 @@ public abstract class CustomElement {
 	public void storeBlue(int value) {
 		blueValue = value;
 	}
-
 
 
 	/** get the color */

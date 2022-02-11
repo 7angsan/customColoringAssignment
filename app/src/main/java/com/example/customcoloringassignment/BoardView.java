@@ -7,6 +7,18 @@ import android.view.SurfaceView;
 
 import java.util.ArrayList;
 
+/**
+ * <!-- class BoardView -->
+ *
+ * This class creates and draws the elements on the SurfaceView.
+ * Makes a pizza with toppings along with a napkin.
+ * Drawn objects are put inside an ArrayList for ease of drawing and access.
+ *
+ * @author Steven Lee
+ * @version Spring 2022
+ *
+ */
+
 public class BoardView extends SurfaceView {
 
     // make an ArrayList of CustomElement objects so they can be draw at once
@@ -18,6 +30,7 @@ public class BoardView extends SurfaceView {
     public BoardView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setWillNotDraw(false);
+        // put drawn elements into the ArrayList
         elements.add(new CustomRect("Napkin", 0xFFFFFFFF, 250,300, 450, 600));
         elements.add(new CustomCircle("Crust", 0xFFF7E4C4, 1000, 450, 400));
         elements.add(new CustomCircle("Sauce", 0xFFB21807, 1000, 450, 350));
@@ -31,6 +44,15 @@ public class BoardView extends SurfaceView {
 
     @Override
     public void onDraw(Canvas c) {
+        /**
+         External Citation
+         Date: 8 February 2022
+         Problem: Could not draw or access the elements efficiently.
+         Resource: Stolen from Dr. Nuxoll's whiteboard.
+         Solution: I made an ArrayList of CustomElement and added each
+         CustomElement drawing into the ArrayList. I used a for-each loop
+         to iterate through every element in the ArrayList.
+         */
       for(CustomElement ce: elements) {
           ce.drawMe(c);
       }
@@ -38,6 +60,7 @@ public class BoardView extends SurfaceView {
         elements.get(5).drawHighlight(c);
     }
 
+    // helper methods
     public static ArrayList<CustomElement> getArrayList() {
         return elements;
     }
