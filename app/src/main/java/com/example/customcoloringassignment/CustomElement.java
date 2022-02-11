@@ -61,6 +61,10 @@ public abstract class CustomElement {
 		this.highlightPaint.setStrokeWidth(5); // nice wide, visible line
 		this.highlightPaint.setShadowLayer(5, 1, 1, Color.MAGENTA);
 
+		this.redValue = Color.red(color);
+		this.greenValue = Color.green(color);
+		this.blueValue = Color.blue(color);
+
 	}
 
 	/** get the element's given name */
@@ -89,6 +93,14 @@ public abstract class CustomElement {
 				Color.green(old),
 				Color.blue(old)
 		));
+
+		int oldR = Color.red(old);
+		int oldG = Color.green(old);
+		int oldB = Color.blue(old);
+		int newR = Color.red(myPaint.getColor());
+		int newG = Color.green(myPaint.getColor());
+		int newB = Color.blue(myPaint.getColor());
+		int x = 5;
 	}
 
 	public void setGreen(int value) {
@@ -103,7 +115,7 @@ public abstract class CustomElement {
 
 	public void setBlue(int value) {
 		int old = this.myPaint.getColor();
-		storeGreen(value);
+		storeBlue(value);
 		this.myPaint.setColor(Color.rgb(
 				Color.red(old),
 				Color.green(old),

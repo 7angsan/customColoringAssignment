@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         SeekBar changeRed = findViewById(R.id.redBar);
         TextView redNum = findViewById(R.id.redValue);
         changeRed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            MainActivity mainActivity;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
                 // crashes if I don't add a string
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         SeekBar changeGreen = findViewById(R.id.greenBar);
         TextView greenNum = findViewById(R.id.greenValue);
         changeGreen.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            MainActivity mainActivity;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
                 // Get the element at currentElement and use CustomElement.setGreen(progressValue)
@@ -61,10 +59,9 @@ public class MainActivity extends AppCompatActivity {
         SeekBar changeBlue = findViewById(R.id.blueBar);
         TextView blueNum = findViewById(R.id.blueValue);
         changeBlue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            MainActivity mainActivity;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
-                boardView.getArrayList().get(boardView.getCurrentElement()).setGreen(progressValue);
+                boardView.getArrayList().get(boardView.getCurrentElement()).setBlue(progressValue);
                 blueNum.setText(progressValue + "");
                 boardView.invalidate();
             }
